@@ -1,0 +1,19 @@
+# FastAPI and web framework dependencies
+fastapi>=0.104.0
+uvicorn[standard]>=0.24.0
+
+# HTTP client for API requests
+aiohttp>=3.9.0
+
+# Data validation and serialization
+pydantic>=2.5.0
+pydantic-settings>=2.1.0
+
+# Database dependencies (for future use)
+sqlalchemy>=2.0.0
+
+# Async support
+asyncio
+
+# Logging and utilities
+python-dotenv>=1.0.0 
