@@ -13,6 +13,9 @@ import json
 from datetime import datetime
 from typing import Dict, Any
 
+from dotenv import load_dotenv
+load_dotenv()
+
 # Add the project root to the Python path
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
@@ -68,37 +71,69 @@ async def main():
     print("🚀 Job Finder AI Agent - Job Ingestion Demo")
     print("=" * 50)
     
-    # Get search query from command line or use default
-    query = sys.argv[1] if len(sys.argv) > 1 else "python developer"
+    # Get search queries from command line or use default
+    queries_input = sys.argv[1] if len(sys.argv) > 1 else "python developer"
     limit_per_source = int(sys.argv[2]) if len(sys.argv) > 2 else 10
     
-    print(f"Searching for: '{query}'")
+    # Split queries by comma and clean them
+    queries = [query.strip() for query in queries_input.split(",")]
+    
+    print(f"Searching for: {', '.join(queries)}")
     print(f"Limit per source: {limit_per_source}")
     print(f"Timestamp: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print("-" * 50)
     
     try:
-        # Fetch jobs from all sources
-        print("📡 Fetching jobs from all sources...")
-        result = await ingest_all_sources(query, limit_per_source)
+        # Fetch jobs from all sources for all queries
+        print("📡 Fetching jobs from all sources for all queries...")
+        all_jobs = []
+        all_errors = []
+        total_stats = {
+            "total_jobs": 0,
+            "remotive_jobs": 0,
+            "adzuna_jobs": 0,
+            "start_time": datetime.now(),
+            "end_time": None,
+            "duration_seconds": 0
+        }
+        
+        for i, query in enumerate(queries, 1):
+            print(f"\n🔍 Processing query {i}/{len(queries)}: '{query}'")
+            result = await ingest_all_sources(query, limit_per_source)
+            
+            # Collect jobs and errors
+            all_jobs.extend(result.jobs)
+            all_errors.extend(result.errors)
+            
+            # Update stats
+            total_stats["remotive_jobs"] += result.stats["remotive_jobs"]
+            total_stats["adzuna_jobs"] += result.stats["adzuna_jobs"]
+            
+            print(f"   ✅ Found {len(result.jobs)} jobs for '{query}'")
+        
+        # Calculate final stats
+        total_stats["end_time"] = datetime.now()
+        duration = (total_stats["end_time"] - total_stats["start_time"]).total_seconds()
+        total_stats["duration_seconds"] = duration
+        total_stats["total_jobs"] = len(all_jobs)
         
         # Display statistics
         print(f"\n📊 Ingestion Statistics:")
-        print(f"   Total jobs fetched: {result.stats['total_jobs']}")
-        print(f"   Remotive jobs: {result.stats['remotive_jobs']}")
-        print(f"   Adzuna jobs: {result.stats['adzuna_jobs']}")
-        print(f"   Errors encountered: {len(result.errors)}")
-        print(f"   Duration: {result.stats['duration_seconds']:.2f} seconds")
+        print(f"   Total jobs fetched: {total_stats['total_jobs']}")
+        print(f"   Remotive jobs: {total_stats['remotive_jobs']}")
+        print(f"   Adzuna jobs: {total_stats['adzuna_jobs']}")
+        print(f"   Errors encountered: {len(all_errors)}")
+        print(f"   Duration: {total_stats['duration_seconds']:.2f} seconds")
         
         # Display errors if any
-        if result.errors:
+        if all_errors:
             print(f"\n❌ Errors encountered:")
-            for error in result.errors:
+            for error in all_errors:
                 print(f"   {error['source']}: {error['error']}")
         
         # Deduplicate jobs
-        unique_jobs = deduplicate_jobs(result.jobs)
-        print(f"\n🔄 Deduplication: {len(result.jobs)} -> {len(unique_jobs)} unique jobs")
+        unique_jobs = deduplicate_jobs(all_jobs)
+        print(f"\n🔄 Deduplication: {len(all_jobs)} -> {len(unique_jobs)} unique jobs")
         
         # Display first 3 jobs
         if unique_jobs:

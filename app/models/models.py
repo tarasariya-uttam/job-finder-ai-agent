@@ -10,7 +10,7 @@ class Job(BaseModel):
     description: str
     salary_range: Optional[str]
     required_skills: List[str]
-    source_platform: Literal["linkedin", "indeed", "monster", "other"]
+    source_platform: Literal["linkedin", "indeed", "monster", "remotive", "adzuna", "other"]
     posted_date: datetime
     url: str
 

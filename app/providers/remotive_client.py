@@ -18,7 +18,7 @@ from app.models.models import Job
 logger = logging.getLogger(__name__)
 
 # Remotive API endpoints
-REMOTIVE_BASE_URL = "https://remotive.io/api"
+REMOTIVE_BASE_URL = "https://remotive.com/api"
 REMOTIVE_JOBS_ENDPOINT = f"{REMOTIVE_BASE_URL}/remote-jobs"
 
 # Default headers for API requests

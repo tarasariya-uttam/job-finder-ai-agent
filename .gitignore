@@ -1,0 +1,29 @@
+# Python virtual environments
+venv/
+.env
+.env.*
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+.Python
+dist/
+build/
+egg-info/
+*.egg-info/
+
+# VSCode and IDE settings
+.vscode/
+.idea/
+
+# macOS system files
+.DS_Store
+
+# Logs
+*.log
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/ 
