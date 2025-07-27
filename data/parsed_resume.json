@@ -1,0 +1,126 @@
+{
+  "metadata": {
+    "source_file": "uttam_machine_learning_resume.pdf"
+  },
+  "resume": {
+    "full_name": "UTTAMKUMAR TARASARIYA",
+    "email": "uttamtarsariya@gmail.com",
+    "phone": "(437) 971-7179",
+    "linkedin": "",
+    "location": "Toronto, Canada",
+    "skills": [
+      "aws",
+      "azure",
+      "c#",
+      "data science",
+      "docker",
+      "dynamodb",
+      "git",
+      "go",
+      "graphql",
+      "java",
+      "javascript",
+      "jira",
+      "kotlin",
+      "lambda",
+      "linux",
+      "machine learning",
+      "matplotlib",
+      "mongodb",
+      "node.js",
+      "numpy",
+      "pandas",
+      "postgresql",
+      "python",
+      "pytorch",
+      "react",
+      "redis",
+      "rekognition",
+      "sagemaker",
+      "scikit-learn",
+      "sql",
+      "tensorflow"
+    ],
+    "experience": [
+      {
+        "start_date": "2023",
+        "end_date": "2025",
+        "title": "Machine Learning Engineer",
+        "company": "SOTI Inc.",
+        "location": "Ontario, Canada",
+        "description": "Worked at SOTI Inc. as Machine Learning Engineer from October 2023 - January 2025"
+      },
+      {
+        "start_date": "2022",
+        "end_date": "2023",
+        "title": "Research & Development Intern (Data Science)",
+        "company": "SOTI Inc.",
+        "location": "Ontario, Canada",
+        "description": "Worked at SOTI Inc. as Research & Development Intern (Data Science) from September 2022 - September 2023"
+      },
+      {
+        "start_date": "2018",
+        "end_date": "2021",
+        "title": "Mobile Engineer & Full Stack Developer",
+        "company": "PlanetX Pvt Ltd",
+        "location": "Gujarat, India",
+        "description": "Worked at PlanetX Pvt Ltd as Mobile Engineer & Full Stack Developer from May 2018 - August 2021"
+      }
+    ],
+    "education": [
+      {
+        "degree": "Postgraduate",
+        "field": "Artificial Intelligence and Data Science",
+        "institution": "Loyalist College of Applied Arts and Technologies",
+        "year": 2022,
+        "gpa": "3.9/4.0"
+      },
+      {
+        "degree": "Bachelor",
+        "field": "Engineering - Computer Engineering",
+        "institution": "Gujarat Technological University",
+        "year": 2019,
+        "gpa": "7.9/10"
+      }
+    ],
+    "certifications": [
+      {
+        "name": "AWS Certified Machine Learning Specialist",
+        "date": "April 2022",
+        "score": "775/1000",
+        "full_text": "AWS Certified Machine Learning Specialist 775/1000 April 2022"
+      }
+    ],
+    "projects": [
+      {
+        "name": "Restaurant Menu Customization System",
+        "date": "Jan. 2022 - April 2022",
+        "type": "academic",
+        "technologies": [
+          "aws",
+          "lambda",
+          "rekognition",
+          "python"
+        ],
+        "description": "Developed a system enabling restaurant owners to upload menus, process them via AWS Lambda and Rekognition, and allow customers to customize dishes with dynamic pricing and taste adjustments."
+      },
+      {
+        "name": "Depression Detection in Tweets using Machine Learning Classifiers Models",
+        "date": "May 2022 - August 2022",
+        "type": "academic",
+        "technologies": [
+          "python",
+          "scikit-learn",
+          "aws",
+          "word2vec",
+          "emoji2vec"
+        ],
+        "description": "Developed ML models using Word2Vec and Emoji2Vec for detecting depression in tweets."
+      }
+    ],
+    "years_of_experience": 6,
+    "current_position": "Machine Learning Engineer",
+    "summary": "Experienced Machine Learning Engineer with expertise in AI/ML, cloud technologies, and full-stack development."
+  },
+  "saved_at": "2025-07-26T19:02:33.639464"
+}

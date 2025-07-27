@@ -3,7 +3,7 @@
 Sample script to demonstrate job ingestion from multiple sources.
 
 This script fetches jobs from Remotive.io and Adzuna, displays the results,
-and is ready for future database integration.
+and saves them to storage for later scoring.
 """
 
 import asyncio
@@ -21,6 +21,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from app.pipelines.job_ingestor import ingest_all_sources, deduplicate_jobs
 from app.models.models import Job
+from app.utils.job_storage import save_jobs, append_jobs
 
 def print_job_summary(job: Job, index: int) -> None:
     """
@@ -147,11 +148,26 @@ async def main():
             print(f"\n📄 JSON Output (first 3 jobs):")
             print(json.dumps(job_dicts, indent=2, ensure_ascii=False))
             
-            # Ready for database storage
-            print(f"\n💾 Ready for database storage:")
-            print(f"   Total jobs to store: {len(unique_jobs)}")
-            print(f"   Sample job ID: {unique_jobs[0].id if unique_jobs else 'N/A'}")
+            # Save jobs to storage
+            print(f"\n💾 Saving jobs to storage...")
+            metadata = {
+                "queries": queries,
+                "limit_per_source": limit_per_source,
+                "total_queries": len(queries),
+                "fetch_timestamp": datetime.now().isoformat()
+            }
             
+            # Save all jobs (this will replace existing jobs)
+            success = save_jobs(unique_jobs, metadata)
+            
+            if success:
+                print(f"   ✅ Successfully saved {len(unique_jobs)} jobs to storage")
+                print(f"   📁 Storage location: data/fetched_jobs.json")
+            else:
+                print(f"   ❌ Failed to save jobs to storage")
+            
+            print(f"   Sample job ID: {unique_jobs[0].id if unique_jobs else 'N/A'}")
+                
         else:
             print("\n❌ No jobs found. This could be due to:")
             print("   - API rate limiting")

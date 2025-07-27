@@ -17,3 +17,5 @@ asyncio
 
 # Logging and utilities
 python-dotenv>=1.0.0 
+
+spacy 
