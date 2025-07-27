@@ -535,7 +535,7 @@ if __name__ == "__main__":
     print(f"Current Position: {resume_data.current_position}")
     print(f"Summary: {resume_data.summary[:200] if resume_data.summary else 'No summary found'}\n")
     print("=== CONTACT INFO ===")
-    print(f"Email: {resume_data.email}")
+    print(f"Email: {resume_data.email}") 
     print(f"Phone: {resume_data.phone}")
     print(f"LinkedIn: {resume_data.linkedin}")
     print(f"Location: {resume_data.location}\n")
