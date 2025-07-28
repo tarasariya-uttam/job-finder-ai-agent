@@ -18,4 +18,8 @@ asyncio
 # Logging and utilities
 python-dotenv>=1.0.0 
 
-spacy 
+# NLP and ML dependencies
+spacy>=3.7.0
+sentence-transformers>=2.2.0
+torch>=2.0.0
+transformers>=4.30.0 
